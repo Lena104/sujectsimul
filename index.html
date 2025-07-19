@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2022 개정 교육과정 고교학점제 과목 선택 시뮬레이터</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>고교학점제 과목 선택 시뮬레이터</h1>
+            <p class="header-desc">2022 개정 교육과정 기준 155개 보통교과 과목으로 나만의 학습계획을 수립해보세요.</p>
+        </header>
+
+        <!-- Selected Elective Courses Section (Top Strip) -->
+        <section class="elective-courses-section">
+            <div class="section-header">
+                <h2>선택 과목</h2>
+                <div class="credit-info">
+                    <span id="electiveCredits">0</span>학점
+                </div>
+            </div>
+            <div class="elective-courses-strip" id="electiveCoursesStrip">
+                <div class="empty-state">선택한 과목이 없습니다. 아래에서 과목을 선택해주세요.</div>
+            </div>
+        </section>
+
+        <!-- Graduation Requirements Panel -->
+        <section class="requirements-panel">
+            <div class="graduation-status" id="graduationStatus">
+                <span class="status status--success hidden" id="graduationBadge">🎉 졸업 요건 충족!</span>
+            </div>
+            <div class="requirements-summary">
+                <div class="requirement-item">
+                    <span class="label">총 이수 학점:</span>
+                    <span class="value"><span id="totalCredits">62</span>/192</span>
+                </div>
+                <div class="requirement-item">
+                    <span class="label">교과 이수 학점:</span>
+                    <span class="value"><span id="subjectCredits">62</span>/174</span>
+                </div>
+                <div class="requirement-item">
+                    <span class="label">필수 이수 학점:</span>
+                    <span class="value"><span id="mandatoryCredits">62</span>/84</span>
+                </div>
+                <div class="requirement-item">
+                    <span class="label">국수영 학점 제한:</span>
+                    <span class="value"><span id="korMathEngCredits">28</span>/81</span>
+                </div>
+                <div class="requirement-item">
+                    <span class="label">창의적 체험활동:</span>
+                    <span class="value">18/18</span>
+                </div>
+            </div>
+            <div class="requirements-grid" id="requirementsGrid">
+                <!-- 교과군별 요구사항이 여기에 표시됩니다 -->
+            </div>
+            <div id="requirementWarnings" class="requirement-warnings"></div>
+        </section>
+
+        <!-- Subject Areas with Tabs -->
+        <section class="subjects-section">
+            <div class="subjects-header">
+                <h2>과목 선택 (교과군별)</h2>
+            </div>
+            
+            <!-- Tab Navigation -->
+            <nav class="tab-navigation" id="tabNavigation">
+                <button class="tab-btn active" data-category="국어">국어</button>
+                <button class="tab-btn" data-category="수학">수학</button>
+                <button class="tab-btn" data-category="영어">영어</button>
+                <button class="tab-btn" data-category="사회">사회</button>
+                <button class="tab-btn" data-category="과학">과학</button>
+                <button class="tab-btn" data-category="체육">체육</button>
+                <button class="tab-btn" data-category="예술">예술</button>
+                <button class="tab-btn" data-category="기술가정">기술가정</button>
+                <button class="tab-btn" data-category="정보">정보</button>
+                <button class="tab-btn" data-category="제2외국어">제2외국어</button>
+                <button class="tab-btn" data-category="한문">한문</button>
+                <button class="tab-btn" data-category="교양">교양</button>
+            </nav>
+            
+            <!-- Tab Content -->
+            <div class="tab-content" id="tabContent">
+                <!-- 과목 카드들이 여기에 표시됩니다 -->
+            </div>
+        </section>
+
+        <!-- Common Compulsory Courses Section (Bottom Strip) -->
+        <section class="compulsory-courses-section">
+            <div class="section-header">
+                <h2>공통 필수 과목 (62학점)</h2>
+                <div class="info-text">삭제 불가</div>
+            </div>
+            <div class="compulsory-courses-strip" id="compulsoryCoursesStrip">
+                <!-- 필수과목들이 여기에 표시됩니다 -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal for Course Details -->
+    <div id="courseModal" class="modal hidden">
+        <div class="modal-backdrop" onclick="closeCourseModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalCourseName">과목명</h3>
+                <button class="modal-close" onclick="closeCourseModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="course-info">
+                    <div class="course-detail">
+                        <strong>학점:</strong> <span id="modalCredits">0</span>학점
+                    </div>
+                    <div class="course-detail">
+                        <strong>유형:</strong> <span id="modalType">유형</span>
+                    </div>
+                    <div class="course-detail">
+                        <strong>과목 소개:</strong>
+                        <p id="modalDescription">과목 설명</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modalActionBtn" class="btn btn--primary">추가</button>
+                <button class="btn btn--outline" onclick="closeCourseModal()">취소</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
